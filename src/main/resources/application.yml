@@ -1,6 +1,8 @@
 server:
   port: ${SERVER_PORT}
 spring:
+  main:
+    allow-bean-definition-overriding: true
 
   datasource:
     driver-class-name: ${DB_CLASS}
@@ -35,3 +37,8 @@ cloud:
     credentials:
       secret-key: ${AWS_SECRET}
       access-key: ${AWS_ACCESS}
+email:
+  host: ${MAIL_HOST}
+  port: ${MAIL_PORT}
+  username: ${MAIL_USERNAME}
+  password: ${MAIL_PASSWORD}
