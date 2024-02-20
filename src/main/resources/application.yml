@@ -23,3 +23,15 @@ jwt:
   refreshSecret: ${REFRESH_SECRET}
   accessTime: 100000000
   refreshTime: 1209600
+
+cloud:
+  aws:
+    region:
+      static: ${AWS_REGION}
+    s3:
+      bucket: ${AWS_BUCKET_NAME}
+    stack:
+      auto: false
+    credentials:
+      secret-key: ${AWS_SECRET}
+      access-key: ${AWS_ACCESS}
