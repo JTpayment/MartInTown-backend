@@ -17,4 +17,9 @@ public class MemberUtil {
         return memberRepository.findMemberByLoginId(id)
                 .orElseThrow(MemberNotfoundException::new);
     }
+
+    public Member findById(Long id) {
+        return memberRepository.findByMemberId(id)
+                .orElseThrow(MemberNotfoundException::new);
+    }
 }
