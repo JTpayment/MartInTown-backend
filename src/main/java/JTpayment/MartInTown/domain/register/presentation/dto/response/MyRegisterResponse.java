@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterResponse {
+public class MyRegisterResponse {
 
     private Long registerId;
 
@@ -23,9 +23,9 @@ public class RegisterResponse {
 
     private Status status;
 
-    public static RegisterResponse toResponse(Register register) {
+    public static MyRegisterResponse toResponse(Register register) {
 
-        return RegisterResponse.builder()
+        return MyRegisterResponse.builder()
                 .registerId(register.getRegisterId())
                 .storeName(register.getStoreName())
                 .address(register.getAddress())

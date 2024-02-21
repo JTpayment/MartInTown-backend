@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterListResponse {
+public class MyRegisterListResponse {
 
-    private List<RegisterResponse> registerList;
+    private List<MyRegisterResponse> registerList;
 }
