@@ -2,10 +2,10 @@ package JTpayment.MartInTown.domain.register.service.impl;
 
 import JTpayment.MartInTown.domain.auth.entity.Member;
 import JTpayment.MartInTown.domain.register.entity.Register;
-import JTpayment.MartInTown.domain.register.presentation.dto.response.RegisterListResponse;
-import JTpayment.MartInTown.domain.register.presentation.dto.response.RegisterResponse;
+import JTpayment.MartInTown.domain.register.presentation.dto.response.MyRegisterListResponse;
+import JTpayment.MartInTown.domain.register.presentation.dto.response.MyRegisterResponse;
 import JTpayment.MartInTown.domain.register.repository.RegisterRepository;
-import JTpayment.MartInTown.domain.register.service.RegisterListService;
+import JTpayment.MartInTown.domain.register.service.MyRegisterListService;
 import JTpayment.MartInTown.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,23 +17,23 @@ import java.util.stream.Collectors;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class RegisterListServiceImpl implements RegisterListService {
+public class MyRegisterListServiceImpl implements MyRegisterListService {
 
     private final RegisterRepository registerRepository;
 
     private final MemberUtil memberUtil;
 
     @Override
-    public RegisterListResponse execute() {
+    public MyRegisterListResponse execute() {
 
         Member member = memberUtil.currentMember();
 
         List<Register> registerList = registerRepository.findByMemberId(member.getMemberId());
 
-        return RegisterListResponse.builder()
+        return MyRegisterListResponse.builder()
                 .registerList(
                         registerList.stream()
-                                .map(RegisterResponse::toResponse)
+                                .map(MyRegisterResponse::toResponse)
                                 .collect(Collectors.toList())
                 )
                 .build();

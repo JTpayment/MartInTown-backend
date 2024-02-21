@@ -1,11 +1,8 @@
-package JTpayment.MartInTown.domain.register.presentation.dto.response;
+package JTpayment.MartInTown.domain.admin.presentation.dto.response;
 
 import JTpayment.MartInTown.domain.register.entity.Register;
 import JTpayment.MartInTown.domain.register.entity.enums.Status;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @Builder
