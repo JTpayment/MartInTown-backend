@@ -47,6 +47,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/mail/check").permitAll()
                 .requestMatchers("/store/**").authenticated()
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/").authenticated()
                 .anyRequest().permitAll();
 
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
