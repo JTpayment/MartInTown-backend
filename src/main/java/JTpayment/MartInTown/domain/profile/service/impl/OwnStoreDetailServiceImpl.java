@@ -5,6 +5,7 @@ import JTpayment.MartInTown.domain.profile.service.OwnStoreDetailService;
 import JTpayment.MartInTown.domain.store.entity.Store;
 import JTpayment.MartInTown.domain.store.exception.StoreNotfoundException;
 import JTpayment.MartInTown.domain.store.repository.StoreRepository;
+import JTpayment.MartInTown.global.util.StoreUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +13,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OwnStoreDetailServiceImpl implements OwnStoreDetailService {
     private final StoreRepository storeRepository;
+    private final StoreUtil storeUtil;
     @Override
     public OwnStoreDetailResponse execute(Long storeId) {
-        Store store = storeRepository.findById(storeId)
-                .orElseThrow(StoreNotfoundException::new);
+        Store store = storeUtil.findById(storeId);
 
         return OwnStoreDetailResponse.builder()
                 .storeId(store.getStoreId())

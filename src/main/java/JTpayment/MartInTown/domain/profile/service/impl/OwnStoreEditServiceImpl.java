@@ -5,6 +5,7 @@ import JTpayment.MartInTown.domain.profile.service.OwnStoreEditService;
 import JTpayment.MartInTown.domain.store.entity.Store;
 import JTpayment.MartInTown.domain.store.exception.StoreNotfoundException;
 import JTpayment.MartInTown.domain.store.repository.StoreRepository;
+import JTpayment.MartInTown.global.util.StoreUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +14,11 @@ import org.springframework.stereotype.Service;
 public class OwnStoreEditServiceImpl implements OwnStoreEditService {
 
     private final StoreRepository storeRepository;
+    private final StoreUtil storeUtil;
 
     @Override
     public void execute(Long storeId, OwnStoreEditRequest request) {
-        Store store = storeRepository.findById(storeId)
-                .orElseThrow(StoreNotfoundException::new);
+        Store store = storeUtil.findById(storeId);
 
         store.setStoreName(request.getStoreName());
         store.setAddress(request.getAddress());

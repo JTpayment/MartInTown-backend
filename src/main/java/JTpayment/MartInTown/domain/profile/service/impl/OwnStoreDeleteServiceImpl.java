@@ -4,6 +4,7 @@ import JTpayment.MartInTown.domain.profile.service.OwnStoreDeleteService;
 import JTpayment.MartInTown.domain.store.entity.Store;
 import JTpayment.MartInTown.domain.store.exception.StoreNotfoundException;
 import JTpayment.MartInTown.domain.store.repository.StoreRepository;
+import JTpayment.MartInTown.global.util.StoreUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +13,11 @@ import org.springframework.stereotype.Service;
 public class OwnStoreDeleteServiceImpl implements OwnStoreDeleteService {
 
     private final StoreRepository storeRepository;
+    private final StoreUtil storeUtil;
 
     @Override
     public void execute(Long storeId) {
-        Store store = storeRepository.findById(storeId)
-                .orElseThrow(StoreNotfoundException::new);
+        Store store = storeUtil.findById(storeId);
 
         storeRepository.delete(store);
     }
