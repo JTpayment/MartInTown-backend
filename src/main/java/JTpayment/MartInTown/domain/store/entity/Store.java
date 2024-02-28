@@ -2,10 +2,12 @@ package JTpayment.MartInTown.domain.store.entity;
 
 import JTpayment.MartInTown.domain.auth.entity.Member;
 import JTpayment.MartInTown.domain.profile.entity.MemberFavoriteStore;
+import JTpayment.MartInTown.domain.stock.entity.Stock;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,6 +35,9 @@ public class Store {
 
     @OneToMany(mappedBy = "store")
     private Set<MemberFavoriteStore> memberStores = new HashSet<>();
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Stock> stockList;
 
     public void setAddress(String address) {
         this.address = address;
