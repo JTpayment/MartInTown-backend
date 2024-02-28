@@ -48,7 +48,11 @@ public class SecurityConfig {
                 .requestMatchers("/store/**").authenticated()
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/").authenticated()
-                .anyRequest().permitAll();
+                .requestMatchers(HttpMethod.POST, "/profile/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/profile/**").authenticated()
+                .requestMatchers(HttpMethod.PATCH, "/profile/**").authenticated()
+                .requestMatchers(HttpMethod.DELETE, "/profile/**").authenticated()
+                .anyRequest().denyAll();
 
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 

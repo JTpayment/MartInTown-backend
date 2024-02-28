@@ -1,11 +1,15 @@
 package JTpayment.MartInTown.domain.auth.entity;
 
 import JTpayment.MartInTown.domain.auth.entity.enums.Role;
+import JTpayment.MartInTown.domain.profile.entity.MemberFavoriteStore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -29,6 +33,9 @@ public class Member {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "member")
+    private Set<MemberFavoriteStore> memberStores = new HashSet<>();
 
     public void setRole(Role role) {
         this.role = role;
