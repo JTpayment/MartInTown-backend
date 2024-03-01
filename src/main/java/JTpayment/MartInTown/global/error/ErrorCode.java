@@ -24,12 +24,17 @@ public enum ErrorCode {
 
     //REGISTER
     REGISTER_NOT_FOUND("점포 신청을 찾을 수 없습니다.", 404),
+
+    //FAVORITE
     DUPLICATED_FAVORITE_STORE("중복된 단골점포 입니다.", 409),
     FAVORITE_STORE_NOT_FOUND("단골 점포를 찾을 수 없습니다.", 404),
 
     //STORE
     STORE_NOT_FOUND("점포를 찾을 수 없습니다.", 404),
-    MANAGER_MISMATCH("점포 주인이 아닙니다.", 403);
+    MANAGER_MISMATCH("점포 주인이 아닙니다.", 403),
+
+    //STOCK
+    STOCK_NOT_FOUND("재고를 찾을 수 없습니다.", 404);
 
     private final String message;
     private final int status;
