@@ -3,8 +3,8 @@ package JTpayment.MartInTown.domain.stock.presentation;
 import JTpayment.MartInTown.domain.stock.presentation.dto.request.CreateStockRequest;
 import JTpayment.MartInTown.domain.stock.presentation.dto.response.StockListResponse;
 import JTpayment.MartInTown.domain.stock.service.CreateStockService;
+import JTpayment.MartInTown.domain.stock.service.SearchStockService;
 import JTpayment.MartInTown.domain.stock.service.StockListService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +19,11 @@ public class StockController {
 
     private final StockListService stockListService;
 
+    private final SearchStockService searchStockService;
+
     @PostMapping
     public ResponseEntity<Void> create(
-            @PathVariable @Valid Long storeId,
+            @PathVariable Long storeId,
             @RequestBody CreateStockRequest createStockRequest
     ) {
       createStockService.execute(storeId, createStockRequest);
@@ -29,8 +31,14 @@ public class StockController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<StockListResponse> list(@PathVariable @Valid Long storeId) {
+    public ResponseEntity<StockListResponse> list(@PathVariable Long storeId) {
         StockListResponse response = stockListService.execute(storeId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<StockListResponse> search(@PathVariable Long storeId, @RequestParam String key) {
+        StockListResponse response = searchStockService.execute(storeId, key);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
