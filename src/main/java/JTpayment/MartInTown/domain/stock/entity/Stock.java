@@ -1,5 +1,6 @@
 package JTpayment.MartInTown.domain.stock.entity;
 
+import JTpayment.MartInTown.domain.stock.presentation.dto.request.UpdateStockRequest;
 import JTpayment.MartInTown.domain.store.entity.Store;
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,4 +30,11 @@ public class Stock {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
+
+    public void update(UpdateStockRequest request) {
+        stockName = request.getStockName();
+        price = request.getPrice();
+        stock = request.getStock();
+        image = request.getImage();
+    }
 }
